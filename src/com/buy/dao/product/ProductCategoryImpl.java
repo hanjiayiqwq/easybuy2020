@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategoryImpl implements IProductCategory {
+    private Connection conn;
+    private PreparedStatement pstmt;
+    private ResultSet rs;
+
     @Override
     public List<EasybuyProductCategory> queryAllProductCategory(String parentId) {
         List<EasybuyProductCategory> productCategories=new ArrayList<EasybuyProductCategory>();
@@ -18,18 +22,22 @@ public class ProductCategoryImpl implements IProductCategory {
 
         try {
             StringBuffer sql=new StringBuffer();
-            sql.append("select * from easybuy_product_category where 1=1");
+            sql.append("select * from easybuy_product_category where 1=1 ");
+
+
+
+            //获取连接
+             conn= DataSourceUtil.getConn();
+             pstmt=conn.prepareStatement(sql.toString());
+            //pstmt.setString(1,parentId);
 
             //判断parentID的值，如果为0，显示的是一级分类
             if (!"".equals(parentId) || null!=parentId){
                 sql.append("and parentId = 0");
             }
 
-            //获取连接
-            Connection conn= DataSourceUtil.getConn();
-            PreparedStatement pstmt=conn.prepareStatement(sql.toString());
-            pstmt.setString(1,parentId);
-            ResultSet rs =pstmt.executeQuery();
+             rs =pstmt.executeQuery();
+
             //处理结果集
             while (rs.next()){
                 //实例化对象
