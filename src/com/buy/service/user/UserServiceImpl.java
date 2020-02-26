@@ -13,4 +13,10 @@ public class UserServiceImpl implements IUserService {
 
         return uDao.getUserByloginName(loginName);
     }
+
+    @Override
+    public boolean save(EasybuyUser user) {
+
+        return uDao.save(user)>0?true:false;
+    }
 }

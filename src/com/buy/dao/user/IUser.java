@@ -4,4 +4,6 @@ import com.buy.entity.EasybuyUser;
 
 public interface IUser {
     EasybuyUser getUserByloginName(String loginName) throws Exception;
+
+    int save(EasybuyUser user);
 }

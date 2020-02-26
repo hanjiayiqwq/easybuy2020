@@ -136,7 +136,19 @@
         </span>
         <!--End 所在收货地区 End-->
         <span class="fr">
-        	<span class="fl">你好，请<a href="${ctx}/front/login.jsp">登录</a>&nbsp; <a href="/Regist.jsp" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+        	<span class="fl">
+                <c:if test="${sessionScope.loginUser==null}">
+                你好，请<a href="${ctx}/front/login.jsp">登录</a>&nbsp;
+                <a href="/Regist.jsp" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;
+
+                  </c:if>
+                <c:if test="${sessionScope.loginUser!=null}">
+                    用户<a href="#" style="color: #0071c6">【${sessionScope.loginUser.loginname}】登录</a>&nbsp;&nbsp;
+                    <a href="${ctx}/login?action=logOut" style="color:#ff4e00;">注销</a>&nbsp;|&nbsp;
+
+                </c:if>
+
+                <a href="#">我的订单</a>&nbsp;|</span>
         	<span class="ss">
             	<div class="ss_list">
                 	<a href="#">收藏夹</a>
@@ -647,8 +659,8 @@
                             </ul>
                         </div>
                     </div>
-                    <a class="h_prev" href="javascript:void();">Previous</a>
-                    <a class="h_next" href="javascript:void();">Next</a>
+                    <a class="h_prev" href="javascript:void(0);">Previous</a>
+                    <a class="h_next" href="javascript:void(0);">Next</a>
                 </div>
             </div>
         </div>
@@ -1295,8 +1307,8 @@
                         </ul>
                     </div>
                 </div>
-                <a class="l_prev" href="javascript:void();">Previous</a>
-                <a class="l_next" href="javascript:void();">Next</a>
+                <a class="l_prev" href="javascript:void(0);">Previous</a>
+                <a class="l_next" href="javascript:void(0);">Next</a>
             </div>
         </div>
     </div>

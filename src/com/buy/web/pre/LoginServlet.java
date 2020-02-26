@@ -60,6 +60,15 @@ public class LoginServlet extends AbstractServlet {
         return  result;
 
     }
+    public String logOut(HttpServletRequest request, HttpServletResponse response) {
+        //删除session中用户的记录
+        request.getSession().removeAttribute("loginUser");
+        //
+        return "/front/home";
+
+
+    }
+
 
 
 
