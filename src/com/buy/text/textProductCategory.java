@@ -9,6 +9,7 @@ import java.util.List;
 public class textProductCategory {
     public static void main(String[] args) {
         IProductCategory productCategory=new ProductCategoryImpl();
+
        List<EasybuyProductCategory>productCategories= productCategory.queryAllProductCategory("0");
         for (EasybuyProductCategory category: productCategories) {
             System.out.println(category.getName());
